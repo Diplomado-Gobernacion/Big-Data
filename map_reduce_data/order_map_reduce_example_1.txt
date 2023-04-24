@@ -1,0 +1,33 @@
+[
+  {
+    $match:
+      /**
+       * query: The query in MQL.
+       */
+      {
+        status: "A",
+      },
+  },
+  {
+    $sort:
+      /**
+       * Provide any number of field/order pairs.
+       */
+      {
+        cust_id: 1,
+      },
+  },
+  {
+    $group:
+      /**
+       * specifications: The fields to
+       *   include or exclude.
+       */
+      {
+        _id: "$cust_id",
+        value: {
+          $sum: "$amout",
+        },
+      },
+  },
+]
